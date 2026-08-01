@@ -1687,7 +1687,7 @@
       priority:priorityLabels[state.priority] || state.priority,
       risk:riskLabels[state.risk] || state.risk,
       residency:residencyLabels[state.residency] || state.residency,
-      recommended_order:order.map(key => ebookLabels[key] || key).join(" > "),
+      recommended_order:order.map(key => ebookLabels[key] || EBOOKS[key]?.title || key).join(" > "),
       first_ebook:ebookLabels[order[0]] || order[0]
     };
   }
