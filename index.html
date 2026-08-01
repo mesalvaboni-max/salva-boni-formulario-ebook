@@ -1650,17 +1650,24 @@
 
   async function sendLead(payload) {
     localStorage.setItem("salva_boni_ebook_trail_last_result",JSON.stringify(payload));
-    if (!CONFIG.webhookUrl) return;
+    if (!CONFIG.webhookUrl) {
+      console.warn("Webhook URL não configurado.");
+      return;
+    }
+
     try {
-      await fetch(CONFIG.webhookUrl,{
-        method:"POST",
-        mode:"no-cors",
-        headers:{"Content-Type":"text/plain;charset=utf-8"},
-        body:JSON.stringify(payload),
-        keepalive:true
+      await fetch(CONFIG.webhookUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(payload)
       });
-    } catch(error) {
-      console.warn("Não foi possível enviar o lead ao webhook.",error);
+
+      console.log("Lead enviado para o webhook:", payload);
+    } catch (error) {
+      console.error("Erro ao enviar lead:", error);
     }
   }
 
