@@ -1631,6 +1631,50 @@
     }).join("");
   }
 
+  const careerLabels = {
+    final_year:"Estou no último ano da faculdade.",
+    pre_residency:"Sou recém-formado(a) e estou me preparando para a residência.",
+    resident:"Estou fazendo residência.",
+    early_career:"Sou médico(a) e tenho até 3 anos de atuação.",
+    established:"Tenho mais de 3 anos de atuação."
+  };
+
+  const startingPointLabels = {
+    unaware:"Sei que não fui preparado(a), mas ainda não entendo tudo o que preciso aprender.",
+    lost:"Tenho várias dúvidas e não sei o que organizar primeiro.",
+    mistakes:"Já comecei a trabalhar, mas percebo erros, desorganização ou decisões sem estratégia.",
+    transition:"Minha maior preocupação é me preparar financeiramente para a residência."
+  };
+
+  const priorityLabels = {
+    awareness:"Por que a faculdade não me preparou para essa parte da carreira?",
+    direction:"O que eu preciso fazer primeiro para começar certo?",
+    prevention:"Quais erros podem comprometer minha organização e meu patrimônio?",
+    residency:"Como atravessar a residência sem sufoco financeiro?"
+  };
+
+  const riskLabels = {
+    no_system:"Não acompanho entradas, gastos ou metas de forma consistente.",
+    mixed_accounts:"Misturo decisões pessoais e profissionais ou tenho dúvidas sobre PF e CNPJ.",
+    leftover:"Invisto ou guardo apenas quando sobra dinheiro.",
+    debt:"Assumi ou penso em assumir parcelas e compromissos longos.",
+    organized:"Já tenho alguma organização e quero aprofundar minhas decisões."
+  };
+
+  const residencyLabels = {
+    next_12:"Quero entrar na residência nos próximos 12 meses.",
+    later:"Quero fazer residência, mas ainda não defini quando.",
+    current:"Já estou na residência.",
+    no_plan:"Residência não faz parte dos meus planos agora."
+  };
+
+  const ebookLabels = {
+    awareness:"O que a faculdade não ensina",
+    direction:"Os 5 primeiros passos",
+    prevention:"Desafios e erros do início da carreira",
+    residency:"Preparação financeira para a residência"
+  };
+
   function buildPayload(order) {
     return {
       source:"diagnostico_trilha_ebooks_salva_boni",
@@ -1638,13 +1682,13 @@
       name:state.name,
       whatsapp:normalizePhone(state.whatsapp),
       email:state.email,
-      career:state.career,
-      starting_point:state.starting,
-      priority:state.priority,
-      risk:state.risk,
-      residency:state.residency,
-      recommended_order:order,
-      first_ebook:EBOOKS[order[0]].title
+      career:careerLabels[state.career] || state.career,
+      starting_point:startingPointLabels[state.starting] || state.starting,
+      priority:priorityLabels[state.priority] || state.priority,
+      risk:riskLabels[state.risk] || state.risk,
+      residency:residencyLabels[state.residency] || state.residency,
+      recommended_order:order.map(key => ebookLabels[key] || key).join(" > "),
+      first_ebook:ebookLabels[order[0]] || order[0]
     };
   }
 
