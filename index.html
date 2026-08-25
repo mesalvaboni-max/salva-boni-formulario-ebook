@@ -1031,6 +1031,133 @@
       box-shadow:none;
     }
 
+    .offer-card {
+      position:relative;
+      margin-top:24px;
+      padding:32px 30px;
+      border-radius:24px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 14% 0%,rgba(255,255,255,.4),transparent 20rem),
+        linear-gradient(135deg,#f3cf5c 0%,#e3b83a 45%,#b9890b 100%);
+      box-shadow:0 26px 60px rgba(189,146,26,.34);
+      border:1px solid rgba(255,255,255,.4);
+      animation:offer-pulse 2.6s ease-in-out infinite;
+    }
+    .offer-ribbon {
+      position:relative;
+      z-index:1;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 15px;
+      border-radius:999px;
+      background:var(--navy-950);
+      color:#ffe07a;
+      font-size:.72rem;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+      margin-bottom:17px;
+    }
+    .offer-card h3 {
+      position:relative;
+      z-index:1;
+      font-size:clamp(1.55rem,2.6vw,2.3rem);
+      letter-spacing:-.04em;
+      margin-bottom:10px;
+      color:var(--navy-950);
+    }
+    .offer-card p {
+      position:relative;
+      z-index:1;
+      color:rgba(7,40,75,.8);
+      line-height:1.55;
+      margin-bottom:21px;
+      max-width:560px;
+    }
+    .offer-price-row {
+      position:relative;
+      z-index:1;
+      display:flex;
+      align-items:baseline;
+      flex-wrap:wrap;
+      gap:13px;
+      margin-bottom:10px;
+    }
+    .offer-price-old {
+      color:rgba(7,40,75,.6);
+      font-size:1.2rem;
+      text-decoration:line-through;
+      font-weight:800;
+    }
+    .offer-price-new {
+      color:var(--navy-950);
+      font-size:clamp(2.2rem,4.2vw,3.1rem);
+      font-weight:950;
+      letter-spacing:-.03em;
+    }
+    .offer-price-tag {
+      display:inline-flex;
+      align-items:center;
+      padding:5px 11px;
+      border-radius:999px;
+      background:var(--navy-950);
+      color:#ffe07a;
+      font-size:.78rem;
+      font-weight:950;
+    }
+    .offer-coupon {
+      position:relative;
+      z-index:1;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:11px 17px;
+      margin-bottom:23px;
+      border-radius:14px;
+      background:rgba(255,255,255,.6);
+      border:1.5px dashed rgba(7,40,75,.45);
+      color:var(--navy-950);
+      font-size:.9rem;
+      font-weight:800;
+    }
+    .offer-coupon strong {
+      letter-spacing:.07em;
+    }
+    .offer-coupon-copy {
+      border:0;
+      background:var(--navy-950);
+      color:#ffe07a;
+      font-size:.74rem;
+      font-weight:900;
+      letter-spacing:.03em;
+      padding:6px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      transition:transform .15s ease,background .15s ease;
+    }
+    .offer-coupon-copy:hover {
+      transform:translateY(-1px);
+    }
+    .offer-coupon-copy.is-copied {
+      background:var(--green);
+      color:white;
+    }
+    .offer-card .primary-btn {
+      position:relative;
+      z-index:1;
+      background:linear-gradient(135deg,var(--navy-800),var(--navy-950));
+      color:white;
+      width:fit-content;
+      box-shadow:0 17px 34px rgba(7,40,75,.28);
+    }
+
+    @keyframes offer-pulse {
+      0%,100% { box-shadow:0 26px 60px rgba(189,146,26,.34); }
+      50% { box-shadow:0 26px 68px rgba(189,146,26,.55); }
+    }
+
     .result-actions {
       display:flex;
       flex-wrap:wrap;
@@ -1153,6 +1280,12 @@
       }
       .vitor-card-arrow {
         display:none;
+      }
+      .offer-card {
+        padding:24px 20px;
+      }
+      .offer-card .primary-btn {
+        width:100%;
       }
 
       .visual-path {
@@ -1423,6 +1556,26 @@
             </div>
           </div>
           <div class="trail-list" id="trailList"></div>
+
+          <div class="offer-card">
+            <div class="offer-ribbon">Oferta exclusiva para quem chegou até aqui</div>
+            <h3>Quer ir além dos 4 e-books gratuitos?</h3>
+            <p>Acesse o método completo do Vitor Bonilha para organizar sua vida financeira com um passo a passo estruturado, direto ao ponto.</p>
+            <div class="offer-price-row">
+              <span class="offer-price-old">R$ 397</span>
+              <span class="offer-price-new">R$ 297,75</span>
+              <span class="offer-price-tag">25% OFF</span>
+            </div>
+            <div class="offer-coupon">
+              Cupom de desconto: <strong>MEDICO</strong>
+              <button class="offer-coupon-copy" id="copyCoupon" type="button">Copiar cupom</button>
+            </div>
+            <a class="primary-btn" href="https://pay.hotmart.com/I93630334B?checkoutMode=0&bid=1783023659179" target="_blank" rel="noopener">
+              Quero garantir com desconto
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+
           <div class="all-note">Esta recomendação tem finalidade educacional. Ela organiza a leitura dos materiais, mas não substitui orientação financeira, tributária, contábil ou jurídica individualizada.</div>
 
           <a class="vitor-card" href="https://www.instagram.com/p/DbWuh_IMiqg/" target="_blank" rel="noopener">
@@ -1815,6 +1968,23 @@
       return;
     }
     alert("O calendário de agendamento será conectado em breve. O botão já está preparado para receber o link definitivo.");
+  });
+
+  document.getElementById("copyCoupon").addEventListener("click",async event => {
+    const button = event.currentTarget;
+    try {
+      await navigator.clipboard.writeText("MEDICO");
+    } catch (error) {
+      console.warn("Não foi possível copiar o cupom automaticamente.",error);
+      return;
+    }
+    const originalLabel = button.textContent;
+    button.textContent = "Copiado!";
+    button.classList.add("is-copied");
+    setTimeout(() => {
+      button.textContent = originalLabel;
+      button.classList.remove("is-copied");
+    },2000);
   });
 
   document.getElementById("restartQuiz").addEventListener("click",() => {
